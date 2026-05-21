@@ -4,15 +4,16 @@ Update this file whenever the current phase, active feature, or implementation s
 
 ## Current Phase
 
-- Foundation / Design System
+- Editor Chrome (complete)
 
 ## Current Goal
 
-- Install and configure shadcn/ui, add UI primitive components, set up dark theme CSS variables, and create the cn() utility.
+- Feature 03 (TBD from feature-specs).
 
 ## Completed
 
 - Feature 01: Design System — shadcn/ui (Tailwind v4) initialized, Button/Card/Dialog/Input/Tabs/Textarea/ScrollArea added to `components/ui/`, lucide-react installed, `lib/utils.ts` cn() helper created, dark-only theme wired in `globals.css`.
+- Feature 02: Editor Chrome — `components/editor/editor-navbar.tsx` (fixed navbar, sidebar toggle with PanelLeftOpen/PanelLeftClose) and `components/editor/project-sidebar.tsx` (floating overlay, slides in from left, Projects header, My Projects/Shared tabs with empty states, New Project button). Dialog pattern ready via existing `components/ui/dialog.tsx` wired to design tokens.
 
 ## In Progress
 
@@ -20,7 +21,8 @@ Update this file whenever the current phase, active feature, or implementation s
 
 ## Next Up
 
-- Feature 02 (TBD from feature-specs)
+- Feature 03 (TBD from feature-specs)
+
 
 ## Open Questions
 
