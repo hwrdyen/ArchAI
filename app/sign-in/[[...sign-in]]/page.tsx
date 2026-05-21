@@ -25,7 +25,7 @@ function FeatureItem({
 
 export default function SignInPage() {
   return (
-    <div className="min-h-screen bg-base flex">
+    <div className="min-h-screen bg-background flex">
       <div className="hidden lg:flex flex-col w-1/2 bg-surface border-r border-surface-border">
         <div className="px-10 pt-10">
           <div className="flex items-center gap-2.5">
