@@ -12,7 +12,7 @@ function FeatureItem({
 }) {
   return (
     <div className="flex gap-4">
-      <div className="flex-shrink-0 h-9 w-9 rounded-xl bg-accent-dim flex items-center justify-center text-brand">
+      <div className="shrink-0 h-9 w-9 rounded-xl bg-accent-dim flex items-center justify-center text-brand">
         {icon}
       </div>
       <div>
@@ -29,7 +29,7 @@ export default function SignInPage() {
       <div className="hidden lg:flex flex-col w-1/2 bg-surface border-r border-surface-border">
         <div className="px-10 pt-10">
           <div className="flex items-center gap-2.5">
-            <div className="h-7 w-7 rounded-lg bg-brand flex-shrink-0" />
+            <div className="h-7 w-7 rounded-lg bg-brand shrink-0" />
             <span className="text-copy-primary font-semibold text-sm tracking-tight">
               Arch AI
             </span>
