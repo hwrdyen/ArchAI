@@ -14,6 +14,7 @@ import type { ProjectListItem } from "@/lib/project-data";
 interface DeleteProjectDialogProps {
   open: boolean;
   project: ProjectListItem | null;
+  isLoading: boolean;
   onClose: () => void;
   onConfirm: () => void;
 }
@@ -21,6 +22,7 @@ interface DeleteProjectDialogProps {
 export function DeleteProjectDialog({
   open,
   project,
+  isLoading,
   onClose,
   onConfirm,
 }: DeleteProjectDialogProps) {
@@ -41,7 +43,7 @@ export function DeleteProjectDialog({
           <Button variant="outline" onClick={onClose}>
             Cancel
           </Button>
-          <Button variant="destructive" onClick={onConfirm}>
+          <Button variant="destructive" onClick={onConfirm} disabled={isLoading}>
             Delete
           </Button>
         </DialogFooter>

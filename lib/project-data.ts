@@ -33,12 +33,12 @@ export async function getProjectLists(): Promise<{
       : Promise.resolve([]),
   ]);
 
+  const ownedIds = new Set(ownedProjects.map((p) => p.id));
+
   return {
     owned: ownedProjects.map((p) => ({ ...p, owned: true })),
-    shared: collaborations.map((c) => ({
-      id: c.project.id,
-      name: c.project.name,
-      owned: false,
-    })),
+    shared: collaborations
+      .filter((c) => !ownedIds.has(c.project.id))
+      .map((c) => ({ id: c.project.id, name: c.project.name, owned: false })),
   };
 }

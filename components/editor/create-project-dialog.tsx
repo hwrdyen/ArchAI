@@ -15,6 +15,7 @@ interface CreateProjectDialogProps {
   open: boolean;
   formValue: string;
   roomIdPreview: string;
+  isLoading: boolean;
   onFormChange: (value: string) => void;
   onClose: () => void;
   onConfirm: () => void;
@@ -24,6 +25,7 @@ export function CreateProjectDialog({
   open,
   formValue,
   roomIdPreview,
+  isLoading,
   onFormChange,
   onClose,
   onConfirm,
@@ -56,7 +58,7 @@ export function CreateProjectDialog({
           <Button variant="outline" onClick={onClose}>
             Cancel
           </Button>
-          <Button onClick={onConfirm} disabled={!roomIdPreview}>
+          <Button onClick={onConfirm} disabled={!roomIdPreview || isLoading}>
             Create
           </Button>
         </DialogFooter>

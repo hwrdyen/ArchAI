@@ -26,6 +26,7 @@ export function EditorHomeClient({
     targetProject,
     formValue,
     setFormValue,
+    isLoading,
     roomIdPreview,
     openCreate,
     openRename,
@@ -71,6 +72,7 @@ export function EditorHomeClient({
         open={openDialog === "create"}
         formValue={formValue}
         roomIdPreview={roomIdPreview}
+        isLoading={isLoading}
         onFormChange={setFormValue}
         onClose={close}
         onConfirm={confirmCreate}
@@ -79,6 +81,7 @@ export function EditorHomeClient({
         open={openDialog === "rename"}
         project={targetProject}
         formValue={formValue}
+        isLoading={isLoading}
         onFormChange={setFormValue}
         onClose={close}
         onConfirm={confirmRename}
@@ -86,6 +89,7 @@ export function EditorHomeClient({
       <DeleteProjectDialog
         open={openDialog === "delete"}
         project={targetProject}
+        isLoading={isLoading}
         onClose={close}
         onConfirm={confirmDelete}
       />

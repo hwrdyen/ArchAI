@@ -6,6 +6,22 @@ const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
 };
 
+// pg-connection-string treats 'require'/'prefer'/'verify-ca' as temporary
+// aliases for 'verify-full' and warns that this will change. Normalise here
+// so the intent is explicit and the warning is suppressed.
+function normalizeSSLMode(url: string): string {
+  try {
+    const u = new URL(url);
+    const mode = u.searchParams.get("sslmode");
+    if (mode === "require" || mode === "prefer" || mode === "verify-ca") {
+      u.searchParams.set("sslmode", "verify-full");
+    }
+    return u.toString();
+  } catch {
+    return url;
+  }
+}
+
 function createPrismaClient(): PrismaClient {
   const url = process.env.DATABASE_URL ?? "";
   if (!url) {
@@ -18,7 +34,7 @@ function createPrismaClient(): PrismaClient {
     }).$extends(withAccelerate()) as unknown as PrismaClient;
   }
 
-  const adapter = new PrismaPg({ connectionString: url });
+  const adapter = new PrismaPg({ connectionString: normalizeSSLMode(url) });
   return new PrismaClient({ adapter });
 }
 

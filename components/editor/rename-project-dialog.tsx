@@ -17,6 +17,7 @@ interface RenameProjectDialogProps {
   open: boolean;
   project: ProjectListItem | null;
   formValue: string;
+  isLoading: boolean;
   onFormChange: (value: string) => void;
   onClose: () => void;
   onConfirm: () => void;
@@ -26,6 +27,7 @@ export function RenameProjectDialog({
   open,
   project,
   formValue,
+  isLoading,
   onFormChange,
   onClose,
   onConfirm,
@@ -55,7 +57,7 @@ export function RenameProjectDialog({
             value={formValue}
             onChange={(e) => onFormChange(e.target.value)}
             onKeyDown={(e) => {
-              if (e.key === "Enter" && slug) {
+              if (e.key === "Enter" && slug && !isLoading) {
                 onConfirm();
               }
             }}
@@ -66,7 +68,7 @@ export function RenameProjectDialog({
           <Button variant="outline" onClick={onClose}>
             Cancel
           </Button>
-          <Button onClick={onConfirm} disabled={!slug}>
+          <Button onClick={onConfirm} disabled={!slug || isLoading}>
             Rename
           </Button>
         </DialogFooter>

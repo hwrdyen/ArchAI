@@ -44,6 +44,7 @@ export function useProjectActions(activeProjectId?: string) {
   }
 
   async function confirmCreate() {
+    if (isLoading) return;
     const trimmed = formValue.trim();
     const slug = slugify(trimmed);
     if (!trimmed || !slug) return;
@@ -66,6 +67,7 @@ export function useProjectActions(activeProjectId?: string) {
   }
 
   async function confirmRename() {
+    if (isLoading) return;
     const trimmed = formValue.trim();
     if (!targetProject || !trimmed || !slugify(trimmed)) return;
     setIsLoading(true);
@@ -84,6 +86,7 @@ export function useProjectActions(activeProjectId?: string) {
   }
 
   async function confirmDelete() {
+    if (isLoading) return;
     if (!targetProject) return;
     setIsLoading(true);
     try {
