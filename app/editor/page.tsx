@@ -1,25 +1,8 @@
-"use client";
+import { EditorHomeClient } from "@/components/editor/editor-home-client";
+import { getProjectLists } from "@/lib/project-data";
 
-import { useState } from "react";
-import { EditorNavbar } from "@/components/editor/editor-navbar";
-import { ProjectSidebar } from "@/components/editor/project-sidebar";
+export default async function EditorPage() {
+  const { owned, shared } = await getProjectLists();
 
-export default function EditorPage() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-  return (
-    <div className="h-screen bg-base overflow-hidden">
-      <EditorNavbar
-        isSidebarOpen={isSidebarOpen}
-        onToggleSidebar={() => setIsSidebarOpen((prev) => !prev)}
-      />
-      <ProjectSidebar
-        isOpen={isSidebarOpen}
-        onClose={() => setIsSidebarOpen(false)}
-      />
-      <main className="h-full pt-12 flex items-center justify-center">
-        <p className="text-copy-faint text-sm">Canvas coming soon.</p>
-      </main>
-    </div>
-  );
+  return <EditorHomeClient ownedProjects={owned} sharedProjects={shared} />;
 }
