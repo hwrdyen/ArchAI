@@ -4,7 +4,7 @@ Update this file whenever the current phase, active feature, or implementation s
 
 ## Current Phase
 
-- Feature 04: Project Dialogs & Editor Home (complete)
+- Feature 05: Prisma Schema And Data Layer (complete)
 
 ## Completed
 
@@ -12,6 +12,7 @@ Update this file whenever the current phase, active feature, or implementation s
 - Feature 02: Editor Chrome — `components/editor/editor-navbar.tsx` (fixed navbar, sidebar toggle with PanelLeftOpen/PanelLeftClose) and `components/editor/project-sidebar.tsx` (floating overlay, slides in from left, Projects header, My Projects/Shared tabs with empty states, New Project button). Dialog pattern ready via existing `components/ui/dialog.tsx` wired to design tokens.
 - Feature 03: Auth — `@clerk/ui` installed; `NEXT_PUBLIC_CLERK_SIGN_IN_URL` and `NEXT_PUBLIC_CLERK_SIGN_UP_URL` env vars added; `proxy.ts` at root using `clerkMiddleware` + `createRouteMatcher` (all routes protected except `/sign-in` and `/sign-up`); `ClerkProvider` with `dark` theme from `@clerk/ui/themes` and CSS-variable-based appearance overrides wraps root layout; two-panel sign-in/sign-up pages at `app/(auth)/sign-in/[[...sign-in]]/` and `app/(auth)/sign-up/[[...sign-up]]/`; root `/` redirects authenticated users to `/editor`, unauthenticated to `/sign-in`; `app/editor/page.tsx` wires existing EditorNavbar + ProjectSidebar; `UserButton` added to EditorNavbar right section.
 - Feature 04: Project Dialogs & Editor Home — `lib/slugify.ts` (slug generation), `lib/mock-projects.ts` (mock data with owned/shared projects), `hooks/use-project-dialogs.ts` (dialog/form/loading state + mock CRUD), `components/editor/create-project-dialog.tsx` (name input + live slug preview), `components/editor/rename-project-dialog.tsx` (prefilled input, auto-focus, Enter submits), `components/editor/delete-project-dialog.tsx` (destructive confirm only); `ProjectSidebar` updated with project items, hover-reveal rename/delete actions for owned projects, mobile backdrop scrim; `app/editor/page.tsx` updated with editor home content and all dialogs wired.
+- Feature 05: Prisma Schema And Data Layer — `prisma/models/project.prisma` (Project + ProjectCollaborator models with enum, indexes, cascade delete); `lib/prisma.ts` (cached singleton, branches on `prisma+postgres://` for Accelerate vs direct `@prisma/adapter-pg`); migration `20260522205831_init_projects` applied; Prisma Client generated to `app/generated/prisma`.
 
 ## In Progress
 
@@ -19,7 +20,7 @@ Update this file whenever the current phase, active feature, or implementation s
 
 ## Next Up
 
-- Feature 05 (TBD from feature-specs)
+- Feature 06 (TBD from feature-specs)
 
 
 ## Open Questions
@@ -37,4 +38,4 @@ Update this file whenever the current phase, active feature, or implementation s
 - Next.js 16.2.6, React 19.2.4, Tailwind v4 (`@tailwindcss/postcss`).
 - shadcn components live in `components/ui/` — do not modify after generation.
 - Theme colors defined in `context/ui-context.md`, implemented as CSS custom properties in `globals.css`.
-- Node.js 12 is the system default but Next.js 16 requires Node 18+. Use `nvm use 20` before running `npm run build`.
+- Node.js 22 required for Prisma CLI (`prisma migrate dev`). Node 20 crashes with `@prisma/dev` ESM error. Use `nvm use 22` before running any `npx prisma` commands or `npm run build`.
