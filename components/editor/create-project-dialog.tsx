@@ -10,11 +10,11 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { slugify } from "@/lib/slugify";
 
 interface CreateProjectDialogProps {
   open: boolean;
   formValue: string;
+  roomIdPreview: string;
   onFormChange: (value: string) => void;
   onClose: () => void;
   onConfirm: () => void;
@@ -23,12 +23,11 @@ interface CreateProjectDialogProps {
 export function CreateProjectDialog({
   open,
   formValue,
+  roomIdPreview,
   onFormChange,
   onClose,
   onConfirm,
 }: CreateProjectDialogProps) {
-  const slug = slugify(formValue);
-
   return (
     <Dialog open={open} onOpenChange={(nextOpen: boolean) => { if (!nextOpen) onClose(); }}>
       <DialogContent showCloseButton={false} className="rounded-3xl">
@@ -47,17 +46,17 @@ export function CreateProjectDialog({
           />
           <p
             className={`text-xs font-mono transition-opacity ${
-              slug ? "text-copy-muted opacity-100" : "opacity-0"
+              roomIdPreview ? "text-copy-muted opacity-100" : "opacity-0"
             }`}
           >
-            {slug || "slug"}
+            {roomIdPreview || "room-id"}
           </p>
         </div>
         <DialogFooter>
           <Button variant="outline" onClick={onClose}>
             Cancel
           </Button>
-          <Button onClick={onConfirm} disabled={!formValue.trim() || !slug}>
+          <Button onClick={onConfirm} disabled={!roomIdPreview}>
             Create
           </Button>
         </DialogFooter>

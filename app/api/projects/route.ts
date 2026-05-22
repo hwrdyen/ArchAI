@@ -25,9 +25,16 @@ export async function POST(request: Request) {
   const name = typeof body?.name === "string" && body.name.trim()
     ? body.name.trim()
     : "Untitled Project";
+  const roomId = typeof body?.roomId === "string" && body.roomId.trim()
+    ? body.roomId.trim()
+    : null;
+
+  if (!roomId) {
+    return Response.json({ error: "roomId is required" }, { status: 400 });
+  }
 
   const project = await prisma.project.create({
-    data: { ownerId: userId, name },
+    data: { ownerId: userId, name, roomId },
   });
 
   return Response.json({ project }, { status: 201 });

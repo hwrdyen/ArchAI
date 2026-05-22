@@ -4,7 +4,7 @@ Update this file whenever the current phase, active feature, or implementation s
 
 ## Current Phase
 
-- Feature 06: Project APIs (complete)
+- Feature 07: Wire Editor Home (complete)
 
 ## Completed
 
@@ -14,6 +14,7 @@ Update this file whenever the current phase, active feature, or implementation s
 - Feature 04: Project Dialogs & Editor Home — `lib/slugify.ts` (slug generation), `lib/mock-projects.ts` (mock data with owned/shared projects), `hooks/use-project-dialogs.ts` (dialog/form/loading state + mock CRUD), `components/editor/create-project-dialog.tsx` (name input + live slug preview), `components/editor/rename-project-dialog.tsx` (prefilled input, auto-focus, Enter submits), `components/editor/delete-project-dialog.tsx` (destructive confirm only); `ProjectSidebar` updated with project items, hover-reveal rename/delete actions for owned projects, mobile backdrop scrim; `app/editor/page.tsx` updated with editor home content and all dialogs wired.
 - Feature 05: Prisma Schema And Data Layer — `prisma/models/project.prisma` (Project + ProjectCollaborator models with enum, indexes, cascade delete); `lib/prisma.ts` (cached singleton, branches on `prisma+postgres://` for Accelerate vs direct `@prisma/adapter-pg`); migration `20260522205831_init_projects` applied; Prisma Client generated to `app/generated/prisma`.
 - Feature 06: Project APIs — `app/api/projects/route.ts` (GET list + POST create); `app/api/projects/[projectId]/route.ts` (PATCH rename + DELETE); 401 for unauthenticated, 403 for non-owner mutations; Clerk `userId` used as `ownerId`; default name `Untitled Project` on create.
+- Feature 07: Wire Editor Home — `lib/project-data.ts` (server-side `getProjectLists` fetches owned + shared via Clerk `currentUser` + Prisma); `hooks/use-project-actions.ts` (dialog state, room-ID preview from slugify+suffix, `POST`/`PATCH`/`DELETE` API calls, `router.push` to new workspace on create, `router.refresh` on rename, redirect to `/editor` or refresh on delete); `components/editor/editor-home-client.tsx` (client wrapper for sidebar + dialogs); `app/editor/page.tsx` converted to async server component fetching data and passing to client; `ProjectSidebar` updated to accept `ownedProjects`/`sharedProjects` as `ProjectListItem[]`; all three dialogs updated to use `ProjectListItem` type; create dialog shows room ID preview.
 
 ## In Progress
 
@@ -21,7 +22,7 @@ Update this file whenever the current phase, active feature, or implementation s
 
 ## Next Up
 
-- Feature 07 (TBD from feature-specs)
+- Feature 08 (TBD from feature-specs)
 
 
 ## Open Questions

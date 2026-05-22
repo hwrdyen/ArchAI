@@ -4,14 +4,15 @@ enum ProjectStatus {
 }
 
 model Project {
-  id             String    @id @default(cuid())
+  id             String        @id @default(cuid())
   ownerId        String
   name           String
+  roomId         String?       @unique
   description    String?
   status         ProjectStatus @default(DRAFT)
   canvasJsonPath String?
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
 
   collaborators  ProjectCollaborator[]
 

@@ -9,11 +9,11 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import type { MockProject } from "@/lib/mock-projects";
+import type { ProjectListItem } from "@/lib/project-data";
 
 interface DeleteProjectDialogProps {
   open: boolean;
-  project: MockProject | null;
+  project: ProjectListItem | null;
   onClose: () => void;
   onConfirm: () => void;
 }

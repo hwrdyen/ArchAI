@@ -11,11 +11,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { slugify } from "@/lib/slugify";
-import type { MockProject } from "@/lib/mock-projects";
+import type { ProjectListItem } from "@/lib/project-data";
 
 interface RenameProjectDialogProps {
   open: boolean;
-  project: MockProject | null;
+  project: ProjectListItem | null;
   formValue: string;
   onFormChange: (value: string) => void;
   onClose: () => void;
