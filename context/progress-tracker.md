@@ -4,7 +4,7 @@ Update this file whenever the current phase, active feature, or implementation s
 
 ## Current Phase
 
-- Feature 05: Prisma Schema And Data Layer (complete)
+- Feature 06: Project APIs (complete)
 
 ## Completed
 
@@ -13,6 +13,7 @@ Update this file whenever the current phase, active feature, or implementation s
 - Feature 03: Auth — `@clerk/ui` installed; `NEXT_PUBLIC_CLERK_SIGN_IN_URL` and `NEXT_PUBLIC_CLERK_SIGN_UP_URL` env vars added; `proxy.ts` at root using `clerkMiddleware` + `createRouteMatcher` (all routes protected except `/sign-in` and `/sign-up`); `ClerkProvider` with `dark` theme from `@clerk/ui/themes` and CSS-variable-based appearance overrides wraps root layout; two-panel sign-in/sign-up pages at `app/(auth)/sign-in/[[...sign-in]]/` and `app/(auth)/sign-up/[[...sign-up]]/`; root `/` redirects authenticated users to `/editor`, unauthenticated to `/sign-in`; `app/editor/page.tsx` wires existing EditorNavbar + ProjectSidebar; `UserButton` added to EditorNavbar right section.
 - Feature 04: Project Dialogs & Editor Home — `lib/slugify.ts` (slug generation), `lib/mock-projects.ts` (mock data with owned/shared projects), `hooks/use-project-dialogs.ts` (dialog/form/loading state + mock CRUD), `components/editor/create-project-dialog.tsx` (name input + live slug preview), `components/editor/rename-project-dialog.tsx` (prefilled input, auto-focus, Enter submits), `components/editor/delete-project-dialog.tsx` (destructive confirm only); `ProjectSidebar` updated with project items, hover-reveal rename/delete actions for owned projects, mobile backdrop scrim; `app/editor/page.tsx` updated with editor home content and all dialogs wired.
 - Feature 05: Prisma Schema And Data Layer — `prisma/models/project.prisma` (Project + ProjectCollaborator models with enum, indexes, cascade delete); `lib/prisma.ts` (cached singleton, branches on `prisma+postgres://` for Accelerate vs direct `@prisma/adapter-pg`); migration `20260522205831_init_projects` applied; Prisma Client generated to `app/generated/prisma`.
+- Feature 06: Project APIs — `app/api/projects/route.ts` (GET list + POST create); `app/api/projects/[projectId]/route.ts` (PATCH rename + DELETE); 401 for unauthenticated, 403 for non-owner mutations; Clerk `userId` used as `ownerId`; default name `Untitled Project` on create.
 
 ## In Progress
 
@@ -20,7 +21,7 @@ Update this file whenever the current phase, active feature, or implementation s
 
 ## Next Up
 
-- Feature 06 (TBD from feature-specs)
+- Feature 07 (TBD from feature-specs)
 
 
 ## Open Questions
